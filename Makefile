@@ -11,7 +11,7 @@ serve: install
 	npm start
 
 clean:
-	npm cache clean
+	rm -rf node_modules
 
 pack: 
 	docker build -t noctarius2k/waterservice:$(TAG) .

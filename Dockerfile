@@ -8,7 +8,7 @@ ADD public /root/app/public
 ADD routes /root/app/routes
 
 WORKDIR /root/app
-RUN npm cache clean && npm install --silent --progress=false --production
+RUN npm install --silent --progress=false --production
 
 EXPOSE 3000
 
