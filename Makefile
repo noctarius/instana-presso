@@ -14,10 +14,10 @@ clean:
 	rm -rf node_modules
 
 pack: 
-	docker build -t noctarius2k/waterservice:$(TAG) .
+	docker build -t noctarius2k/brewservice:$(TAG) .
 
 upload:
-	docker push noctarius2k/waterservice:$(TAG)
+	docker push noctarius2k/brewservice:$(TAG)
 
 deploy:
 	envsubst < k8s/deployment.yml | kubectl apply -n espresso-machine -f -
@@ -25,4 +25,4 @@ deploy:
 undeploy:
 	envsubst < k8s/deployment.yml | kubectl delete -n espresso-machine -f -
 
-ship: pack upload deploy clean
+ship: pack upload deploy

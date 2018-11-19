@@ -1,19 +1,19 @@
 apiVersion: apps/v1beta1
 kind: Deployment
 metadata:
-  name: waterservice
+  name: brewservice
   labels:
-    app: waterservice
+    app: brewservice
 spec:
   replicas: 2
   template:
     metadata:
       labels:
-        app: waterservice
+        app: brewservice
     spec:
       containers:
-      - name: waterservice
-        image: noctarius2k/waterservice:${TAG}
+      - name: brewservice
+        image: noctarius2k/brewservice:${TAG}
         command:
         ports:
           - containerPort: 8080
@@ -26,13 +26,14 @@ spec:
 kind: Service
 apiVersion: v1
 metadata:
-  name: waterservice
+  name: brewservice
 spec:
-  type: ClusterIP
+  type: NodePort
   selector:
-    app: waterservice
+    app: brewservice
   ports:
   - protocol: TCP
+    nodePort: 30011
     port: 80
     targetPort: 3000
     name: http
