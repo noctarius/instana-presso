@@ -7,7 +7,7 @@ var logger = require('morgan');
 var app = express();
 
 app.get('/', function(req, res, next) {
-  res.send('nowait');
+  res.send('true');
 });
 
 module.exports = app;
