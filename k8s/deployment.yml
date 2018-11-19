@@ -1,0 +1,39 @@
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: coordinatorservice
+  labels:
+    app: coordinatorservice
+spec:
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: coordinatorservice
+    spec:
+      containers:
+      - name: coordinatorservice
+        image: noctarius2k/coordinatorservice:${TAG}
+        command:
+        ports:
+          - containerPort: 8080
+        env:
+          - name: INSTANA_AGENT_HOST
+            valueFrom:
+              fieldRef:
+                fieldPath: status.hostIP
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: coordinatorservice
+spec:
+  type: ClusterIP
+  selector:
+    app: coordinatorservice
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 3000
+    name: http
+
