@@ -1,4 +1,4 @@
-FROM node:alpine
+FROM node:10.13-alpine
 
 RUN mkdir /root/app
 COPY package.json /root/app/package.json
@@ -8,7 +8,7 @@ ADD public /root/app/public
 ADD routes /root/app/routes
 
 WORKDIR /root/app
-RUN npm install --silent --progress=false --production
+RUN apk add --no-cache --virtual .gyp build-base python && npm install --only=production && apk del .gyp
 
 EXPOSE 3000
 

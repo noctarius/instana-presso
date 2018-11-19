@@ -28,11 +28,12 @@ apiVersion: v1
 metadata:
   name: waterservice
 spec:
-  type: LoadBalancer
+  type: ClusterIP
   selector:
     app: waterservice
   ports:
   - protocol: TCP
-    port: 3000
+    port: 80
     targetPort: 3000
     name: http
+
