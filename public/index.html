@@ -1,0 +1,42 @@
+<html>
+<head>
+    <script language="JavaScript">
+        function guid() {
+            function s4() {
+                return Math.floor((1 + Math.random()) * 0x10000)
+                    .toString(16)
+                    .substring(1);
+            }
+            return s4() + s4() + '-' + s4() + '-' + s4() + '-' + s4() + '-' + s4() + s4() + s4();
+        }
+
+        var clientId = guid();
+
+        var pushText = function(msg) {
+            var div = document.getElementById("content");
+            var node = document.createElement("div");
+            node.textContent = msg;
+            div.appendChild(node);
+        };
+
+        var ws = new WebSocket('ws://95.216.48.236/ws?clientId=' + clientId);
+        ws.onopen = function() {
+            pushText("Connected");
+            var request = new XMLHttpRequest();
+            request.open("GET", "/espresso?clientId=" + clientId);
+            request.send(null);
+        };
+
+        ws.onmessage = function(msg) {
+            pushText(msg.data);
+        };
+
+        ws.onclose = function() {
+            pushText("Connection closed")
+        }
+    </script>
+</head>
+<body>
+<div id="content"></div>
+</body>
+</html>

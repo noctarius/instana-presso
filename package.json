@@ -1,0 +1,16 @@
+{
+  "name": "frontend",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node app.js"
+  },
+  "dependencies": {
+    "express": "^4.16.4",
+    "express-ws": "^4.0.0",
+    "instana-nodejs-sensor": "^1.55.0",
+    "morgan": "^1.9.1",
+    "request": "^2.88.0",
+    "ws": "^6.1.2"
+  }
+}
