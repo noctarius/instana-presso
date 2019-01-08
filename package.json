@@ -6,6 +6,7 @@
     "start": "node app.js"
   },
   "dependencies": {
+    "amqplib": "^0.5.3",
     "express": "^4.16.4",
     "express-ws": "^4.0.0",
     "instana-nodejs-sensor": "^1.55.0",

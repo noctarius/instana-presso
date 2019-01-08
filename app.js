@@ -1,32 +1,37 @@
+'use strict';
+
 require('instana-nodejs-sensor')({
     reportUncaughtException: true
 });
 
-const morgan = require('morgan');
-const express = require('express');
-const r = require('request');
+const fs = require("fs");
+const {request, notifyUI, app} = require("./support.js");
 
-const app = express();
+const coordinatorService = "http://coordinatorservice.espresso-machine.svc.cluster.local";
 
-app.use(morgan('combined'));
+app.get("/machine", (req, res) => {
+    res.sendFile(__dirname + "/public/index.html");
+});
 
 app.get("/espresso", (req, res) => {
-    request(`http://coordinatorservice.espresso-machine.svc.cluster.local/makecoffee`)
+    let clientId = req.query.clientId;
+    let brewerId = req.query.brewerId;
+
+    notifyUI(brewerId, true);
+
+    request(`${coordinatorService}/makecoffee?clientId=${clientId}&brewerId=${brewerId}`)
         .then(r => res.status(r.statusCode).send(r.body), err => res.status(500).send(err))
 });
 
 app.get("/espresso.jpg", (req, res) => {
-    res.sendfile(__dirname + "/public/espresso.jpg");
+    res.sendFile(__dirname + "/public/espresso.jpg");
+});
+
+app.get("/machine.jpg", (req, res) => {
+    res.sendFile(__dirname + "/public/machine.jpg");
 });
 
 app.listen(3000, "0.0.0.0", (err) => {
     if (err) throw err;
     console.log(`Listening on port 3000.`);
-});
-
-const request = (uri, options) => new Promise((resolve, reject) => {
-    r(uri, options, (err, res) => {
-        if (err) return reject(err);
-        resolve(res);
-    });
 });

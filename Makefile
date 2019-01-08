@@ -25,4 +25,4 @@ deploy:
 undeploy:
 	envsubst < k8s/deployment.yml | kubectl delete -n espresso-machine -f -
 
-ship: pack upload deploy clean
+ship: pack upload deploy
