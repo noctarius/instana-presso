@@ -1,0 +1,6 @@
+node_modules/
+.idea/
+k8s/old
+package-lock.json
+.DS_Store
+
