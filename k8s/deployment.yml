@@ -1,0 +1,39 @@
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: grinder
+  labels:
+    app: grinder
+spec:
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: grinder
+    spec:
+      containers:
+      - name: grinder
+        image: noctarius2k/grinder:${TAG}
+        command:
+        ports:
+          - containerPort: 8080
+        env:
+          - name: INSTANA_AGENT_HOST
+            valueFrom:
+              fieldRef:
+                fieldPath: status.hostIP
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: grinder
+spec:
+  type: ClusterIP
+  selector:
+    app: grinder
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 3000
+    name: http
+
