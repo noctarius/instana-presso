@@ -18,10 +18,12 @@ spec:
         ports:
           - containerPort: 8080
         env:
-          - name: INSTANA_AGENT_HOST
+          - name: JAEGER_ENDPOINT
             valueFrom:
               fieldRef:
                 fieldPath: status.hostIP
+          - name: JAEGER_SERVICE_NAME
+            value: "waterservice"
 ---
 kind: Service
 apiVersion: v1
@@ -35,6 +37,6 @@ spec:
   - protocol: TCP
     nodePort: 30012
     port: 80
-    targetPort: 3000
+    targetPort: 8080
     name: http
 

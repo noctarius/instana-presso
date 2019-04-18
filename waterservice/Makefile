@@ -5,16 +5,19 @@ TAG?=$(shell git rev-list HEAD --max-count=1 --abbrev-commit)
 export TAG
 
 install:
-	npm install
+	./mvnw clean compile
 
-serve: install
-	npm start
+serve:
+	./mvnw clean compile quarkus:dev
 
 clean:
-	rm -rf node_modules
+	./mvnw clean
 
-pack: 
-	docker build -t noctarius2k/waterservice:$(TAG) .
+native:
+	./mvnw package -Pnative -Dnative-image.docker-build=true
+
+pack: native
+	docker build -t noctarius2k/waterservice:$(TAG) -f src/main/docker/Dockerfile.native .
 
 upload:
 	docker push noctarius2k/waterservice:$(TAG)
