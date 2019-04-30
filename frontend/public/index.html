@@ -193,7 +193,7 @@
 
     let websocket;
     let wsfactory = function () {
-        let ws = new WebSocket('ws://35.202.177.168/events?clientId=' + clientId);
+        let ws = new WebSocket('ws://35.239.0.184/events?clientId=' + clientId);
         ws.onopen = function () {
             pushDebug("Connected");
         };
