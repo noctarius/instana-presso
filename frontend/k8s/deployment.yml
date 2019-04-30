@@ -13,7 +13,7 @@ spec:
     spec:
       containers:
       - name: frontend
-        image: noctarius2k/frontend:${TAG}
+        image: gcr.io/acquired-rarity-236416/frontend:${TAG}
         command:
         ports:
           - containerPort: 8080
@@ -28,7 +28,7 @@ apiVersion: v1
 metadata:
   name: frontend
 spec:
-  type: NodePort
+  type: LoadBalancer
   selector:
     app: frontend
   ports:

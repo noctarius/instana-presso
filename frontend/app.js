@@ -20,7 +20,8 @@ app.get("/espresso", (req, res) => {
     notifyUI(brewerId, true);
 
     request(`${coordinatorService}/makecoffee?clientId=${clientId}&brewerId=${brewerId}`)
-        .then(r => res.status(r.statusCode).send(r.body), err => res.status(500).send(err))
+        .then(r => res.status(r.statusCode)
+            .send(r.body), err => res.status(500).send(err))
 });
 
 app.get("/espresso.jpg", (req, res) => {
