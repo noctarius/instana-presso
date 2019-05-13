@@ -9,6 +9,6 @@ import io.opentracing.Tracer;
 @ApplicationScoped
 public class AppLifecycleBean {
 
-    //private static final Tracer tracer = new InstanaTracer();
+    private static final Tracer tracer = new InstanaTracer();
 
 }

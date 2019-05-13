@@ -18,10 +18,12 @@ spec:
         ports:
           - containerPort: 8080
         env:
-          - name: JAEGER_ENDPOINT
+          - name: INSTANA_AGENT_HOST
             valueFrom:
               fieldRef:
                 fieldPath: status.hostIP
+          - name: JAEGER_ENDPOINT
+            value: http://{INSTANA_AGENT_HOST}:14268/api/traces
           - name: JAEGER_SERVICE_NAME
             value: "waterservice"
 ---
