@@ -14,10 +14,10 @@ clean:
 	rm -rf node_modules
 
 pack: 
-	docker build -t noctarius2k/waterservice:$(TAG) .
+	docker build -t gcr.io/acquired-rarity-236416/waterservice:$(TAG) .
 
 upload:
-	docker push noctarius2k/waterservice:$(TAG)
+	docker push gcr.io/acquired-rarity-236416/waterservice:$(TAG)
 
 deploy:
 	envsubst < k8s/deployment.yml | kubectl apply -n espresso-machine -f -

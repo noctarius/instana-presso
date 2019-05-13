@@ -13,7 +13,7 @@ spec:
     spec:
       containers:
       - name: waterservice
-        image: noctarius2k/waterservice:${TAG}
+        image: gcr.io/acquired-rarity-236416/waterservice:${TAG}
         command:
         ports:
           - containerPort: 8080
