@@ -13,7 +13,7 @@ spec:
     spec:
       containers:
       - name: brewservice
-        image: noctarius2k/brewservice:${TAG}
+        image: gcr.io/acquired-rarity-236416/brewservice:${TAG}
         command:
         ports:
           - containerPort: 8080
