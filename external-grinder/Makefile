@@ -14,10 +14,10 @@ clean:
 	rm -rf node_modules
 
 pack: 
-	docker build -t noctarius2k/grinder:$(TAG) .
+	docker build -t gcr.io/acquired-rarity-236416/grinder:$(TAG) .
 
 upload:
-	docker push noctarius2k/grinder:$(TAG)
+	docker push gcr.io/acquired-rarity-236416/grinder:$(TAG)
 
 deploy:
 	envsubst < k8s/deployment.yml | kubectl apply -n external -f -

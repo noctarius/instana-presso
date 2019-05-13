@@ -13,7 +13,7 @@ spec:
     spec:
       containers:
       - name: grinder
-        image: noctarius2k/grinder:${TAG}
+        image: gcr.io/acquired-rarity-236416/grinder:${TAG}
         command:
         ports:
           - containerPort: 8080
