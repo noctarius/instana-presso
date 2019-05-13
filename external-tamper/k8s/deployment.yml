@@ -13,7 +13,7 @@ spec:
     spec:
       containers:
       - name: tamper
-        image: noctarius2k/tamper:${TAG}
+        image: gcr.io/acquired-rarity-236416/tamper:${TAG}
         command:
         ports:
           - containerPort: 8080

@@ -14,10 +14,10 @@ clean:
 	rm -rf node_modules
 
 pack: 
-	docker build -t noctarius2k/tamper:$(TAG) .
+	docker build -t gcr.io/acquired-rarity-236416/tamper:$(TAG) .
 
 upload:
-	docker push noctarius2k/tamper:$(TAG)
+	docker push gcr.io/acquired-rarity-236416/tamper:$(TAG)
 
 deploy:
 	envsubst < k8s/deployment.yml | kubectl apply -n external -f -
